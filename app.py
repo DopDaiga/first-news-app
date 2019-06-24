@@ -1,5 +1,6 @@
 import csv
 from flask import Flask
+from flask import abort
 app = Flask(__name__)  # Note the double underscores on each side!
 
 from flask import render_template # import the render_template for use with html
@@ -26,6 +27,7 @@ def detail(row_id):
     for row in object_list:
         if row['id'] == row_id:
             return render_template(template, object=row)
+    abort(404)
 
 if __name__ == '__main__':
     # Fire up the Flask test server
